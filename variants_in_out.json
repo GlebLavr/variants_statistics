@@ -1,0 +1,4 @@
+{
+    "variants_wf.variants_count.input_file": "data/sample.vcf.gz",
+    "variants_wf.variants_count.output_file": "answer.json"
+}
