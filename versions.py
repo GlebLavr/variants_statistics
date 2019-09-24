@@ -3,7 +3,7 @@ import json
 
 def pkgs_and_version():
 
-    lines = os.popen('dpkg -l | grep "^ii"').read().split('\n')[5:-1]
+    lines = os.system('dpkg -l | grep "^ii"').read().split('\n')[5:-1]
     i = 0
     while len([l for l in lines[i].split('  ') if l]) != 4:
         i += 1
@@ -18,9 +18,7 @@ def pkgs_and_version():
                 parsed.append(line[offsets[i]:offsets[i + 1]].strip())
 
         name = parsed[1].split()[0]
-        print(name)
-        version = parsed[1].split()[0]
-        print(version)
+        version = parsed[1].split()[1]
         pkgs.update({name:{'version':version}})
     return pkgs
 
@@ -28,7 +26,7 @@ pkgs = pkgs_and_version()
 
 def find_command_aptget(pkgs):
 
-    line_found = os.popen('zgrep "Commandline: apt-get install -y" /var/log/apt/history.log').read()
+    line_found = os.system('zgrep "Commandline: apt-get install -y" /var/log/apt/history.log').read()
     command_list = line_found.split("\n")[:-1]
 
     commands = []
@@ -46,7 +44,7 @@ def find_command_aptget(pkgs):
 
 def find_command_apt(pkgs):
 
-    line_found = os.popen('zgrep "Commandline: apt install -y" /var/log/apt/history.log').read()
+    line_found = os.system('zgrep "Commandline: apt install -y" /var/log/apt/history.log').read()
     command_list = line_found.split("\n")[:-1]
 
     commands = []
@@ -61,11 +59,11 @@ def find_command_apt(pkgs):
             
     return command_dict
 
-aptget = os.popen('zgrep "Commandline: apt-get install -y" /var/log/apt/history.log').read()
+aptget = os.system('zgrep "Commandline: apt-get install -y" /var/log/apt/history.log').read()
 if aptget:
     aptget_dict = find_command_aptget(pkgs)
 
-apt = os.popen('zgrep "Commandline: apt install -y" /var/log/apt/history.log').read()
+apt = os.sytem('zgrep "Commandline: apt install -y" /var/log/apt/history.log').read()
 if apt:    
     apt_dict = find_command_apt(pkgs)
 command_dict = {**apt_dict, **aptget_dict}
