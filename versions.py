@@ -3,7 +3,12 @@ import json
 
 def pkgs_and_version():
 
+<<<<<<< HEAD
     lines = os.system('dpkg -l | grep "^ii"').read().split('\n')[5:-1]
+=======
+    lines = os.popen('dpkg -l | grep "^ii"').read().split('\n')[5:-1]
+    print(lines)
+>>>>>>> master
     i = 0
     while len([l for l in lines[i].split('  ') if l]) != 4:
         i += 1
@@ -18,7 +23,13 @@ def pkgs_and_version():
                 parsed.append(line[offsets[i]:offsets[i + 1]].strip())
 
         name = parsed[1].split()[0]
+<<<<<<< HEAD
         version = parsed[1].split()[1]
+=======
+        #print(name)
+        version = parsed[1].split()[0]
+        #print(version)
+>>>>>>> master
         pkgs.update({name:{'version':version}})
     return pkgs
 
