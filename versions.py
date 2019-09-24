@@ -19,7 +19,7 @@ def pkgs_and_version():
 
         name = parsed[1].split()[0]
         print(name)
-        version = parsed[1].split()[1]
+        version = parsed[1].split()[0]
         print(version)
         pkgs.update({name:{'version':version}})
     return pkgs
