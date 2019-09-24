@@ -18,7 +18,9 @@ def pkgs_and_version():
                 parsed.append(line[offsets[i]:offsets[i + 1]].strip())
 
         name = parsed[1].split()[0]
+        print(name)
         version = parsed[1].split()[1]
+        print(version)
         pkgs.update({name:{'version':version}})
     return pkgs
 
