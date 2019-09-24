@@ -3,12 +3,11 @@ import json
 
 def pkgs_and_version():
 
-<<<<<<< HEAD
-    lines = os.system('dpkg -l | grep "^ii"').read().split('\n')[5:-1]
-=======
     lines = os.system('dpkg -l | grep "^ii"').read().split('\n')[5:-1]
 
->>>>>>> master
+    lines = os.system('dpkg -l | grep "^ii"').read().split('\n')[5:-1]
+
+
     i = 0
     while len([l for l in lines[i].split('  ') if l]) != 4:
         i += 1
