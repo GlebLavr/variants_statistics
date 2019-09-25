@@ -21,12 +21,12 @@ pkgs = pkgs_and_version()
 
 def find_command_aptget(pkgs):
 
-    line_found = os.popen('zgrep "Commandline: apt-get install -y" /var/log/apt/history.log').read()
+    line_found = os.popen('zgrep "Commandline: apt install -y" /var/log/apt/history.log').read()
     command_list = line_found.split("\n")[:-1]
 
     commands = []
     for cnt, command in enumerate(command_list):
-        command_list[cnt] = command[32:]
+        command_list[cnt] = command[28:]
         for el in command_list[cnt].split():
             commands.append(el)
             
