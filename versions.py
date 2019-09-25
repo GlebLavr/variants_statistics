@@ -2,28 +2,19 @@ import os
 import json
 
 def pkgs_and_version():
-
-    lines = os.popen('dpkg -l | grep "^ii"').read().split('\n')[1:-1]
-    i = 0
-    while len([l for l in lines[i].split('  ') if l]) != 4:
-        i += 1
-    offsets = [lines[i].index(l) for l in lines[i].split('  ') if len(l)]
+    os.system('dpkg -l | grep "^ii" | cat > versions.txt')
+    fh = open('versions.txt')
+    lines = []
     pkgs = {}
-    for line in lines:
-        parsed = []
-        for i in range(len(offsets)):
-            if len(offsets) == i + 1:
-                parsed.append(line[offsets[i]:].strip())
-            else:
-                parsed.append(line[offsets[i]:offsets[i + 1]].strip())
-
-        name = parsed[1].split()[0]
-
-        version = parsed[1].split()[1]
-
-        version = parsed[1].split()[0]
-        
-        pkgs.update({name:{'version':version}})
+    while True:
+        line = fh.readline()
+        if not line:
+            break
+        name = line.split()[1]
+        version = line.split()[2]
+        pkgs[name] = version
+    fh.close()
+    return pkgs
     return pkgs
 
 pkgs = pkgs_and_version()
