@@ -15,7 +15,6 @@ def pkgs_and_version():
         pkgs[name] = version
     fh.close()
     return pkgs
-    return pkgs
 
 pkgs = pkgs_and_version()
 
