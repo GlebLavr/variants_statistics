@@ -37,30 +37,7 @@ def find_command_aptget(pkgs):
     return command_dict
 
 
-def find_command_apt(pkgs):
 
-    line_found = os.popen('zgrep "Commandline: apt install -y" /var/log/apt/history.log').read()
-    command_list = line_found.split("\n")[:-1]
-
-    commands = []
-    for cnt, command in enumerate(command_list):
-        command_list[cnt] = command[28:]
-        for el in command_list[cnt].split():
-            commands.append(el)
-            
-    command_dict = {}
-    for command in commands:
-        command_dict[command] = pkgs[command]
-            
-    return command_dict
-
-aptget = os.popen('zgrep "Commandline: apt-get install -y" /var/log/apt/history.log').read()
-if aptget:
-    aptget_dict = find_command_aptget(pkgs)
-
-apt = os.popen('zgrep "Commandline: apt install -y" /var/log/apt/history.log').read()
-if apt:    
-    apt_dict = find_command_apt(pkgs)
-command_dict = {**apt_dict, **aptget_dict}
+command_dict = find_command_aptget(pkgs)
 x = json.dumps(command_dict, indent=3)
 print(x) 
