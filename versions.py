@@ -36,9 +36,9 @@ def conc_apts(aptget_var, apt_var):
     names = []
     if aptget_var and apt_var:
         names = aptget_var + apt_var
-    if not apt_var[0]:
+    if not apt_var:
         names = aptget_var
-    if not aptget_var[0]:
+    if not aptget_var:
         names = apt_var
     return final_list
 
