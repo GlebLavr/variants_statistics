@@ -40,7 +40,7 @@ def conc_apts(aptget_var, apt_var):
         names = aptget_var
     if not aptget_var:
         names = apt_var
-    return final_list
+    return names
 
 
 names = conc_apts(aptget_var, apt_var)
