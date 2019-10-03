@@ -73,7 +73,7 @@ x = json.dumps(apt_dict, indent=3)
 print(x)
 
 def custom_tools_ver():
-    line_found = os.popen('ls ~/opt/tools').read()
+    line_found = os.popen('ls /opt/tools').read()
     tools_list = line_found.split('\n')[:-1]
     versions_dict = {}
     for tool in tools_list:
