@@ -84,3 +84,22 @@ def custom_tools_ver():
 versions_dict = custom_tools_ver()
 y = json.dumps(versions_dict, indent=3)
 print(y)
+
+
+def recource_ver():
+    recources = os.listdir("recources")
+    recource_dict = {}
+    for recource in recources:
+        version = os.listdir("recources/" + str(recource))[0]
+        recource_dict[recource] = version
+        
+    return recource_dict
+
+recource_dict = recource_ver()
+z = json.dumps(recource_dict, indent=3)
+print(z)
+
+
+
+
+
