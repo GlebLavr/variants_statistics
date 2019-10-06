@@ -87,10 +87,10 @@ print(y)
 
 
 def recource_ver():
-    recources = os.listdir("recources")
+    recources = os.listdir("resources")
     recource_dict = {}
     for recource in recources:
-        version = os.listdir("recources/" + str(recource))[0]
+        version = os.listdir("resources/" + str(recource))[0]
         recource_dict[recource] = version
         
     return recource_dict
