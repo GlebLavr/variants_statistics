@@ -102,7 +102,7 @@ def recource_ver():
 
 recource_dict = recource_ver()
 z = json.dumps(recource_dict, indent=3)
-write_json(z, 'datasource_bco_recources')
+write_json(z, 'datasource_bco_recources.bco')
 
 
 
