@@ -69,13 +69,13 @@ def create_json(names, versions):
     return apt_dict
 
 apt_dict = create_json(names, versions)
-x = json.dumps(apt_dict, indent=3)
+
 
 def write_json(final_json, name):
     with open(name, 'w') as outfile:
         json.dump(final_json, outfile, indent=4)
         
-write_json(x, 'software_bco_apts.bco')
+write_json(apt_dict, 'software_bco_apts.bco')
 
 def custom_tools_ver():
     line_found = os.popen('ls /opt/tools').read()
@@ -87,8 +87,8 @@ def custom_tools_ver():
         versions_dict[name] = version
     return versions_dict
 versions_dict = custom_tools_ver()
-y = json.dumps(versions_dict, indent=3)
-write_json(y, 'software_bco_custom.bco')
+
+write_json(versions_dict, 'software_bco_custom.bco')
 
 
 def recource_ver():
@@ -101,8 +101,8 @@ def recource_ver():
     return recource_dict
 
 recource_dict = recource_ver()
-z = json.dumps(recource_dict, indent=3)
-write_json(z, 'datasource_bco_recources.bco')
+
+write_json(recource_dict, 'datasource_bco_recources.bco')
 
 
 
